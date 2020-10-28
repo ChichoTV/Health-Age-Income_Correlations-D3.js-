@@ -34,7 +34,7 @@ d3.csv('../assets/data/data.csv').then(function (d){
         .range([chartH,0])
     xscale=d3.scaleLinear()
         .domain(d3.extent(incomes))
-        .range([chartW,0])
+        .range([0,chartW])
     xaxis=d3.axisBottom(xscale);
     yaxisL = d3.axisLeft(yscale);
     yaxisR=d3.axisRight(yscale);
@@ -57,14 +57,13 @@ d3.csv('../assets/data/data.csv').then(function (d){
         .attr('cy',function (d,i){
             return yscale(obesity[i]);
         })
-        .attr('r','8')
+        .attr('r','15')
         .classed('stateCircle',true)
     var text=chart.selectAll('text')
         .data(d)
         .enter()
         .append('text')
-        .attr("font-size", 8)
-        .attr("text-anchor",'middle')
+        .classed('stateText',true)
         .attr('x',function(d,i){
             return xscale(incomes[i]);
         })
